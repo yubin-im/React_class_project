@@ -34,8 +34,16 @@ const Login = () => {
         .then((success) => {
           alert("로그인 성공!");
           setLoading(false);
-          sessionStorage.setItem("email", email); // 세션에 저장
-          navi("/");
+
+          // 세션에 저장
+          sessionStorage.setItem("email", email);
+          sessionStorage.setItem("uid", success.user.uid);
+
+          if (sessionStorage.getItem("target")) {
+            navi(sessionStorage.getItem("target"));
+          } else {
+            navi("/");
+          }
         })
         .catch((error) => {
           alert("에러 발생: " + error);
