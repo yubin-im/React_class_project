@@ -7,6 +7,9 @@ import About from "./About";
 import Books from "./book/Books";
 import Cart from "./book/Cart";
 import Login from "./user/Login";
+import Locals from "./local/Locals";
+import Favorite from "./local/Favorite";
+import Join from "./user/Join";
 
 const Menu = () => {
   const navi = useNavigate();
@@ -31,7 +34,14 @@ const Menu = () => {
               navbarScroll
             >
               <Nav.Link href="/books">도서검색</Nav.Link>
-              <Nav.Link href="/cart">장바구니</Nav.Link>
+              <Nav.Link href="/locals">지역검색</Nav.Link>
+
+              {sessionStorage.getItem("uid") && (
+                <>
+                  <Nav.Link href="/cart">장바구니</Nav.Link>
+                  <Nav.Link href="/favorite">즐겨찾기</Nav.Link>
+                </>
+              )}
             </Nav>
 
             {sessionStorage.getItem("email") ? (
@@ -54,6 +64,9 @@ const Menu = () => {
         <Route path="/books" element={<Books />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/locals" element={<Locals />}></Route>
+        <Route path="/favorite" element={<Favorite />}></Route>
+        <Route path="/join" element={<Join />}></Route>
       </Routes>
     </>
   );
