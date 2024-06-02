@@ -18,13 +18,13 @@ const ListPage = () => {
 
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(6);
+  const [size, setSize] = useState(5);
   const [count, setCount] = useState(0);
 
   const callAPI = () => {
     const q = query(collection(db, "posts"), orderBy("date", "desc"));
 
-    onSnapshot(q, collection(db, "posts"), (snapshot) => {
+    onSnapshot(q, (snapshot) => {
       let rows = [];
       let no = 0;
 
@@ -37,8 +37,7 @@ const ListPage = () => {
       const end = page * size;
 
       let data = rows.map((row, index) => row && { seq: no - index, ...row });
-      data = data.filter((row) => row.no >= start && row.no < end);
-      //   const data = rows.filter((row) => row.no >= start && row.no <= end);
+      data = data.filter((row) => row.no >= start && row.no <= end);
 
       setCount(no);
       setPosts(data);
