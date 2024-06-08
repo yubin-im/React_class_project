@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { app } from "../../firebaseinit";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, deleteDoc } from "firebase/firestore";
 import { Row, Col, Button, Card } from "react-bootstrap";
 
 const ReadPage = () => {
+  const navi = useNavigate();
   const { id } = useParams();
   const loginEmail = sessionStorage.getItem("email");
   const db = getFirestore(app);
@@ -17,6 +18,14 @@ const ReadPage = () => {
   };
 
   const { email, date, title, contents } = post;
+
+  // 게시글 삭제
+  const onClickDelete = async () => {
+    if (!window.confirm(`${id}번 게시글을 삭제하시겠습니까?`)) return;
+    await deleteDoc(doc(db, `/posts/${id}`));
+    // window.location.href = "/bbs";
+    navi("/bbs");
+  };
 
   useEffect(() => {
     callAPI();
@@ -31,7 +40,7 @@ const ReadPage = () => {
             <Button variant="success" size="sm" className="me-2">
               수정
             </Button>
-            <Button variant="danger" size="sm">
+            <Button onClick={onClickDelete} variant="danger" size="sm">
               삭제
             </Button>
           </div>
