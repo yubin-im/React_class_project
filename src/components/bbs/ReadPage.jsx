@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { app } from "../../firebaseinit";
 import { getFirestore, doc, getDoc, deleteDoc } from "firebase/firestore";
 import { Row, Col, Button, Card } from "react-bootstrap";
+import Comments from "./Comments";
 
 const ReadPage = () => {
   const navi = useNavigate();
@@ -37,7 +38,12 @@ const ReadPage = () => {
         <h1 className="mb-5">게시글 정보</h1>
         {loginEmail === email && (
           <div className="text-end mb-2">
-            <Button variant="success" size="sm" className="me-2">
+            <Button
+              onClick={() => navi(`/bbs/update/${id}`)}
+              variant="success"
+              size="sm"
+              className="me-2"
+            >
               수정
             </Button>
             <Button onClick={onClickDelete} variant="danger" size="sm">
@@ -56,6 +62,7 @@ const ReadPage = () => {
             <div style={{ whiteSpace: "pre-wrap" }}>{contents}</div>
           </Card.Body>
         </Card>
+        <Comments />
       </Col>
     </Row>
   );
