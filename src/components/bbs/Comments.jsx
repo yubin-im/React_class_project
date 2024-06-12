@@ -167,6 +167,7 @@ const Comments = () => {
                   <Button
                     size="sm"
                     className="me-2"
+                    variant="success"
                     onClick={() => onClickUpdate(com.id)}
                   >
                     수정
@@ -191,7 +192,7 @@ const Comments = () => {
                   </Button>
                   <Button
                     size="sm"
-                    variant="danger"
+                    variant="secondary"
                     onClick={() => onClickCancel(com)}
                   >
                     취소
