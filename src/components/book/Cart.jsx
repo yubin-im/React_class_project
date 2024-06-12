@@ -13,22 +13,28 @@ const Cart = () => {
   const callAPI = () => {
     setLoading(true);
     onValue(ref(db, `cart/${uid}`), (snapshot) => {
-      // console.log(snapshot.key, snapshot.val());
       const rows = [];
       snapshot.forEach((row) => {
         rows.push({ key: row.key, ...row.val() });
       });
-      console.log(rows);
       setBooks(rows);
     });
     setLoading(false);
   };
 
+  // 장바구니 삭제하기
   const onClickDelete = (book) => {
     if (window.confirm(`${book.title}을 장바구니에서 삭제하시겠습니까?`)) {
-      // 삭제하기
       remove(ref(db, `cart/${uid}/${book.isbn}`));
     }
+  };
+
+  // 가격 콤마 찍기
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("ko-KR", {
+      style: "currency",
+      currency: "KRW",
+    }).format(price);
   };
 
   useEffect(() => {
@@ -56,7 +62,7 @@ const Cart = () => {
                 <img src={book.thumbnail} width="50px" />
               </td>
               <td>{book.title}</td>
-              <td>{book.price}</td>
+              <td>{formatPrice(book.price)}</td>
               <td>{book.authors}</td>
               <td>
                 <Button
