@@ -31,6 +31,7 @@ const ModalPhoto = ({ setLoading, form, setForm }) => {
     width: "200px",
   };
 
+  // 마이페이지 사진 등록
   const onClickSave = async () => {
     if (!file) {
       alert("변경할 이미지를 선택하세요!");

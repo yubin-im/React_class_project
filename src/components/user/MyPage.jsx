@@ -23,6 +23,7 @@ const Mypage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // 마이페이지 정보 변경
   const onSubmit = async (e) => {
     e.preventDefault();
     if (name === "") {

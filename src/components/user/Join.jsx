@@ -23,6 +23,7 @@ const Join = () => {
     });
   };
 
+  // 회원가입
   const onSubmit = (e) => {
     e.preventDefault();
     if (email === "" || pass === "") {

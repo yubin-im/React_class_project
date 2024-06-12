@@ -22,6 +22,7 @@ const Login = () => {
     });
   };
 
+  // 로그인
   const onSubmit = (e) => {
     e.preventDefault();
     if (email === "" || pass === "") {

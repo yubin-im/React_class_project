@@ -37,11 +37,11 @@ const Books = () => {
     callAPI();
   };
 
+  // 장바구니에 도서 넣기
   const onClickCart = (book) => {
     if (uid) {
-      // 장바구니에 도서 넣기
       if (window.confirm(`${book.title}를 장바구니에 넣으시겠습니까?`)) {
-        // 장바구니 체크
+        // 장바구니 중복 체크
         get(ref(db, `cart/${uid}/${book.isbn}`)).then((snapshot) => {
           if (snapshot.exists()) {
             alert("이미 장바구니에 존재합니다.");

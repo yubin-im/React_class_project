@@ -17,6 +17,7 @@ const InsertPage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // 게시글 등록
   const onInsert = async () => {
     if (title === "" || contents === "") {
       alert("제목과 내용을 모두 입력해주세요!");
@@ -24,7 +25,6 @@ const InsertPage = () => {
     }
     if (!window.confirm("등록하시겠습니까?")) return;
 
-    // 게시글 등록
     const data = {
       email: sessionStorage.getItem("email"),
       title,

@@ -18,7 +18,6 @@ const UpdatePage = () => {
 
   const callAPI = async () => {
     const res = await getDoc(doc(db, `posts/${id}`));
-    console.log(res.data());
     setForm(res.data());
   };
 

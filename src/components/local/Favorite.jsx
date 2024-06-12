@@ -22,6 +22,7 @@ const Favorite = () => {
     });
   };
 
+  // 즐겨찾기 삭제
   const onClickDelete = async (local) => {
     if (window.confirm(`${local.id}번을 삭제하시겠습니까?`)) {
       setLoading(true);

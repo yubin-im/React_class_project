@@ -36,7 +36,9 @@ const Locals = () => {
     }
   };
 
+  // 즐겨찾기 등록
   const onClickFavorite = (local) => {
+    // 로그인 체크
     if (!uid) {
       alert("먼저 로그인을 해주세요.");
       sessionStorage.setItem("target", "/locals");
